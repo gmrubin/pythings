@@ -40,6 +40,17 @@ testerstring8 = "game"
 testerstring9 = "imakeitrain"
 testerstring10 = "sonned"
 
+b64string1 = base64.b64encode(testerstring1)
+b64string2 = base64.b64encode(testerstring2)
+b64string3 = base64.b64encode(testerstring3)
+b64string4 = base64.b64encode(testerstring4)
+b64string5 = base64.b64encode(testerstring5)
+b64string6 = base64.b64encode(testerstring6)
+b64string7 = base64.b64encode(testerstring7)
+b64string8 = base64.b64encode(testerstring8)
+b64string9 = base64.b64encode(testerstring9)
+b64string10 = base64.b64encode(testerstring10)
+
 
 # main testing class for nose tests. assertEqual is a method from unittest
 class TestEncoding(unittest.TestCase):
@@ -73,6 +84,39 @@ class TestEncoding(unittest.TestCase):
 
     def test_string10(self):
         self.assertEqual(b64coder.str_to_base64(testerstring10), base64.b64encode(testerstring10))
+
+
+class TestDecoding(unittest.TestCase):
+
+    def test_string1(self):
+        self.assertEqual(b64coder.base64_to_string(b64string1), base64.b64decode(b64string1))
+
+    def test_string2(self):
+        self.assertEqual(b64coder.base64_to_string(b64string2), base64.b64decode(b64string2))
+
+    def test_string3(self):
+        self.assertEqual(b64coder.base64_to_string(b64string3), base64.b64decode(b64string3))
+
+    def test_string4(self):
+        self.assertEqual(b64coder.base64_to_string(b64string4), base64.b64decode(b64string4))
+
+    def test_string5(self):
+        self.assertEqual(b64coder.base64_to_string(b64string5), base64.b64decode(b64string5))
+
+    def test_string6(self):
+        self.assertEqual(b64coder.base64_to_string(b64string6), base64.b64decode(b64string6))
+
+    def test_string7(self):
+        self.assertEqual(b64coder.base64_to_string(b64string7), base64.b64decode(b64string7))
+
+    def test_string8(self):
+        self.assertEqual(b64coder.base64_to_string(b64string8), base64.b64decode(b64string8))
+
+    def test_string9(self):
+        self.assertEqual(b64coder.base64_to_string(b64string9), base64.b64decode(b64string9))
+
+    def test_string10(self):
+        self.assertEqual(b64coder.base64_to_string(b64string10), base64.b64decode(b64string10))
 
 if __name__ == "__main__":
     unittest.main()

@@ -38,7 +38,7 @@ def bin_to_base64(binary_string):
     else:
         padnum = 0
     for i in range(0, len(binary_string), 6):
-        if len(binary_string[i:]) < 8:
+        if len(binary_string[i:]) < 6:
             # the group of bits sometimes needs to be padded (with 0s) to be read correctly
             tmp = binary_string[i:i+6] + "0"*(6-len(binary_string[i:]))
         else:
@@ -53,29 +53,39 @@ def str_to_base64(oldstring):
     newstring = bin_to_base64(binarystring)
     return newstring
 
-#test = "game"
+test = "game "
 
-#output = str_to_base64(test)
+output = str_to_base64(test)
 
 #print output
 
 #print "python -> " + str(base64.b64encode(test))
 
-def base64_to_bin(b64_string):
+# decoding
+
+
+def base64_to_string(b64_string):
     binstring = ""
+    binstart = "0b"
+    finalstring = ""
     stripped = b64_string.replace("=","")
     for i in range(0, len(stripped)):
         tmp = rev_base64dic[stripped[i]]
-#        hex = chr(int(bin(tmp), 2))
-        print tmp
-        hex = binascii.b2a_hex(tmp)
-#        print repr(hex)
-#        print binascii.b2a_hqx(hex.encode('hex'))
-        print binascii.b2a_hqx(hex)
-        binstring += bin(tmp)
-    return binstring.replace("0b","")
+        bintmp = bin(tmp)[2:].zfill(6)
+        binstring += bintmp
+    for i in range(0, len(binstring), 8):
+        if len(binstring) < 8:
+            newtmp = binstring[i:i+8] 
+        else:
+            newtmp = binstring[i:i+8]
+        val = int(binstart + newtmp, 2)
+        finalstring += chr(val)
+    return finalstring.replace("\x00", "")
 
-#print "python -> " + str(base64.b64decode(output))
-#print base64_to_bin(output)
+grdecode = base64_to_string(output)
+pydecode = base64.b64decode(output)
+
+print repr(grdecode)
+print "python ----> " + str(repr(pydecode))
 
 
