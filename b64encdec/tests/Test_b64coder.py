@@ -2,7 +2,14 @@ import unittest
 import sys
 sys.path[0:0] = [""]
 import b64coder
+
+#b64coder = __import__("better64encdec")
+#b64coder.str_to_base64 = b64coder.bytes_to_base64
+#b64coder.base64_to_string = b64coder.base64_to_bytes
+
 import base64
+
+
 import binascii
 from nose.tools import *
 from random import randint
