@@ -37,7 +37,6 @@ def bits_to_ord(bit_string):
     for char in reversed(bit_string):
         if char == '1':
             ret += 2**idx
-
         idx += 1
 
     return ret
@@ -53,7 +52,9 @@ def get_chunks(bit_string, chunk_size):
     ret.append(bit_string[idx:])
     return ret
 
+
 def bytes_to_base64(byte_string):
+    debug(byte_string)
     if not byte_string:
         return ""
 
@@ -67,7 +68,9 @@ def bytes_to_base64(byte_string):
     debug(bit_string)
 
     six_bit_chunks = get_chunks(bit_string, 6)
+    debug(six_bit_chunks)
     num_extra_bits = (6 - len(six_bit_chunks[-1]))
+    debug(num_extra_bits)
     padding = "=" * (3 - len(six_bit_chunks[-1]) / 2)
 
     six_bit_chunks[-1] += "0" * num_extra_bits
@@ -81,9 +84,10 @@ def bytes_to_base64(byte_string):
 
     return ''.join(base64_char_list) + padding
 
-#print bytes_to_base64("s")
-#print bytes_to_base64("su")
-#print bytes_to_base64("sur")
+debug_val = True
+print bytes_to_base64("s")
+print bytes_to_base64("su")
+print bytes_to_base64("sur")
 
 def base64_to_bytes(base64_string):
     ord64_list = map(ord64, base64_string.rstrip("="))

@@ -53,13 +53,13 @@ def str_to_base64(oldstring):
     newstring = bin_to_base64(binarystring)
     return newstring
 
-test = "game "
+test = "oQDZ"
 
 output = str_to_base64(test)
 
-#print output
+print output
 
-#print "python -> " + str(base64.b64encode(test))
+print "python -> " + str(base64.b64encode(test))
 
 # decoding
 
@@ -74,16 +74,15 @@ def base64_to_string(b64_string):
         bintmp = bin(tmp)[2:].zfill(6)
         binstring += bintmp
     for i in range(0, len(binstring), 8):
-        if len(binstring) < 8:
-            newtmp = binstring[i:i+8] 
-        else:
-            newtmp = binstring[i:i+8]
+        newtmp = binstring[i:i+8]
+        if len(newtmp) < 8:
+            continue
         val = int(binstart + newtmp, 2)
         finalstring += chr(val)
-    return finalstring.replace("\x00", "")
+    return finalstring
 
-grdecode = base64_to_string(output)
-pydecode = base64.b64decode(output)
+grdecode = base64_to_string("oQDZ")
+pydecode = base64.b64decode("oQDZ")
 
 print repr(grdecode)
 print "python ----> " + str(repr(pydecode))
