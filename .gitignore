@@ -6,3 +6,4 @@ venv/
 \#
 \.#*
 scrap/
+.DS_Store
